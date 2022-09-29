@@ -1,0 +1,8 @@
+1. Build
+docker build -t solution-engineer-uribouz-api:0.0.1 -f Dockerfile .
+
+2. Stop container if exists
+docker container stop solution-engineer-uribouz-api
+
+3. Start container
+docker run -d --rm -p 1323:1323 --name solution-engineer-uribouz-api solution-engineer-uribouz-api:0.0.1
