@@ -5,8 +5,10 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './player-list.component.html',
-  styleUrl: './player-list.component.css'
+  styleUrl: './player-list.component.css',
 })
 export class PlayerListComponent {
-
+  addPlayerList(playerList: string) {
+    console.log('Hey: ' + playerList);
+  }
 }
