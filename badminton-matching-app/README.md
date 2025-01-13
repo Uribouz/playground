@@ -2,26 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
 
-## Development server
+Objective
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### 1. Can add players
 
-## Code scaffolding
+### 2. Can See list of players
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 3. Can create a randomly match with another 3 player, 1 on the same team, 2 on the opposite team
 
-## Build
+##### 3.1 need to know how many players and divided by 4 to get total number of fields to play
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+##### 3.2 logic should be balanced, every person should play equal amount of games
 
-## Running unit tests
+#### 4. Have partner history, you can see which players one already played with.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### 5. Have matched history, you can see which matched you already play with which players.
 
-## Running end-to-end tests
+##### 5.1 ถ้ามีคนพัก: "Some one take a break": Can edit matched history
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    -> ยังนับรอบคนที่พักว่าเล่นเหมือนเดิม
 
-## Further help
+##### 5.2 ถ้า match ผิดจริงๆ
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    Can delete matched history
+
+##### 5.3 สร้าง match เองได้
+
+    Can new matched history

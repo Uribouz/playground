@@ -1,4 +1,10 @@
 <div>
+  <div *ngFor="let player of playersMap | keyvalue">
+    <h2>Name: {{ player.key }}</h2>
+    <h3>Total Rounds Played: {{ player.value.totalRoundsPlayed }}</h3>
+    <h3>Total Rounds Wons: {{ player.value.totalRoundsWon }}</h3>
+  </div>
+
   <textarea #playerList placeholder="Player List"></textarea>
   <button (click)="addPlayerList(playerList.value)">Add Players</button>
 </div>
