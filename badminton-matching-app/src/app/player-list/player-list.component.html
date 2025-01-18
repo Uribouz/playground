@@ -1,24 +1,27 @@
 <div class="body">
   <div class="inputContainer">
     <textarea #playerList placeholder="Player List"></textarea>
-    <button class="btn" (click)="addPlayerList(playerList.value)">
+    <button class="btn btnAddPlayer" (click)="addPlayerList(playerList.value)">
       Add Players
     </button>
   </div>
 
-  <div class="playerListContainer" *ngFor="let player of playersMap | keyvalue">
-    <div class="playerContainer">
-      <h2>{{ player.key }}: {{ player.value.totalRoundsPlayed }}</h2>
-      <button class="btn-small btn-add" (click)="addRoundsPlayed(player.key)">
-        +
-      </button>
-      <button
-        class="btn-small btn-subtract"
-        (click)="subtractRoundsPlayed(player.key)"
-      >
-        -
-      </button>
+  <div class="playerListContainer">
+    <div class="playerContainer" *ngFor="let player of playersMap | keyvalue">
+      <h2 class="playerHeader">{{ player.key }}</h2>
+      <div class="playerBody">
+        <h2>{{ player.value.totalRoundsPlayed }}:</h2>
+        <button class="btn-small btn-add" (click)="addRoundsPlayed(player.key)">
+          +
+        </button>
+        <button
+          class="btn-small btn-subtract"
+          (click)="subtractRoundsPlayed(player.key)"
+        >
+          -
+        </button>
+      </div>
+      <!-- <h3>Total Rounds Wons: {{ player.value.totalRoundsWon }}</h3> -->
     </div>
-    <!-- <h3>Total Rounds Wons: {{ player.value.totalRoundsWon }}</h3> -->
   </div>
 </div>

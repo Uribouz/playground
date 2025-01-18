@@ -17,6 +17,14 @@ export class PlayerListComponent {
     ['ball3', new Player('ball')],
     ['ball4', new Player('ball')],
     ['ball5', new Player('ball')],
+    ['ball6', new Player('ball')],
+    ['ball7', new Player('ball')],
+    ['ball8', new Player('ball')],
+    ['ball9', new Player('ball')],
+    ['ball10', new Player('ball')],
+    ['ball11', new Player('ball')],
+    ['ball12', new Player('ball')],
+    ['ball13', new Player('ball')],
   ]);
 
   addPlayerList(newPlayers: string) {
