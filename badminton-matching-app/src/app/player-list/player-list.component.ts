@@ -9,34 +9,38 @@ import { CommonModule } from '@angular/common';
   styleUrl: './player-list.component.css',
 })
 export class PlayerListComponent {
-  // playersMap = new Map();
-  //! MockData
-  playersMap = new Map([
-    ['ball', new Player('ball')],
-    ['ball2', new Player('ball')],
-    ['ball3', new Player('ball')],
-    ['ball4', new Player('ball')],
-    ['ball5', new Player('ball')],
-    ['ball6', new Player('ball')],
-    ['ball7', new Player('ball')],
-    ['ball8', new Player('ball')],
-    ['ball9', new Player('ball')],
-    ['ball10', new Player('ball')],
-    ['ball11', new Player('ball')],
-    ['ball12', new Player('ball')],
-    ['ball13', new Player('ball')],
-  ]);
+  playersMap = new Map();
+  constructor() {
+    this.loadLocalStorage();
+  }
+
+  clearLocalStorage() {
+    localStorage.removeItem('player-list');
+  }
+  saveLocalStorage() {
+    console.log('save local storage');
+    localStorage.setItem(
+      'player-list',
+      JSON.stringify(Array.from(this.playersMap.entries()))
+    );
+  }
+  loadLocalStorage() {
+    console.log('load local storage');
+    let oldData = localStorage.getItem('player-list');
+    if (!oldData) {
+      return;
+    }
+    this.playersMap = new Map(JSON.parse(oldData));
+  }
 
   addPlayerList(newPlayers: string) {
-    // const oldPlayers = Array.from(this.playersMap, ([value]) => value);
-    // console.log('oldPlayers: ' + oldPlayers);
-    // console.log('newPlayers: ' + newPlayers);
     newPlayers.split(',').forEach((player) => {
       if (!this.playersMap.has(player)) {
         console.log('New player: ' + player);
         this.playersMap.set(player, new Player(player));
       }
     });
+    this.saveLocalStorage();
   }
 
   addRoundsPlayed(playerName: string) {
@@ -47,6 +51,7 @@ export class PlayerListComponent {
     }
     player.totalRoundsPlayed++;
     this.playersMap.set(playerName, player);
+    this.saveLocalStorage();
   }
 
   subtractRoundsPlayed(playerName: string) {
@@ -57,5 +62,6 @@ export class PlayerListComponent {
     }
     player.totalRoundsPlayed--;
     this.playersMap.set(playerName, player);
+    this.saveLocalStorage();
   }
 }
