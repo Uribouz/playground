@@ -18,14 +18,27 @@
 
 .playerContainer {
   display: inline-block;
-  width: 150px;
+  width: auto;
   height: auto;
   border: solid black;
   padding: 5px;
 }
 .playerHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
   margin: 0;
   border-bottom: solid black;
+}
+
+.playerHeader h2 {
+  text-wrap: wrap;
+}
+.btn-delete {
+  height: 25px;
+  width: 25px;
+  background-color: gray;
 }
 .playerBody {
   font-size: x-large;

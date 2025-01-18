@@ -1,6 +1,6 @@
 <div class="body">
   <div class="inputContainer">
-    <textarea #playerList placeholder="Player List"></textarea>
+    <textarea class="textArea" #playerList placeholder="Player List"></textarea>
     <button class="btn btnAddPlayer" (click)="addPlayerList(playerList.value)">
       Add Players
     </button>
@@ -8,7 +8,12 @@
 
   <div class="playerListContainer">
     <div class="playerContainer" *ngFor="let player of playersMap | keyvalue">
-      <h2 class="playerHeader">{{ player.key }}</h2>
+      <div class="playerHeader">
+        <h2>{{ player.key }}</h2>
+        <button class="btn-small btn-delete" (click)="deletePlayer(player.key)">
+          X
+        </button>
+      </div>
       <div class="playerBody">
         <h2>{{ player.value.totalRoundsPlayed }}:</h2>
         <button class="btn-small btn-add" (click)="addRoundsPlayed(player.key)">

@@ -42,6 +42,11 @@ export class PlayerListComponent {
     });
     this.saveLocalStorage();
   }
+  deletePlayer(playerName: string) {
+    console.log('deletePlayer: ' + playerName);
+    this.playersMap.delete(playerName);
+    this.saveLocalStorage();
+  }
 
   addRoundsPlayed(playerName: string) {
     console.log('addRoundsPlayed: ' + playerName);
