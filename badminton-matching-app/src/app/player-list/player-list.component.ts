@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Player } from '../player/player';
 import { CommonModule, KeyValue } from '@angular/common';
+import { max } from 'rxjs';
 @Component({
   selector: 'app-player-list',
   standalone: true,
@@ -89,7 +90,7 @@ export class PlayerListComponent {
     this.playersMap.set(playerName, player);
   }
   revalidateStatus() {
-    this.status.leastPlayed = 0;
+    this.status.leastPlayed = 9999;
     this.status.mostPlayed = 0;
     this.playersMap.forEach((value, player) => {
       if (this.status.leastPlayed > value.totalRoundsPlayed) {
@@ -115,5 +116,11 @@ export class PlayerListComponent {
   subtractRoundsPlayed(playerName: string) {
     this.updatePlayerRoundsPlayed(playerName, -1);
     this.saveLocalStorage();
+  }
+  getPlayerClass(totalRoundsPlayed: number) {
+    if (totalRoundsPlayed === this.status.leastPlayed)
+      return 'leastPlayedPlayer';
+    if (totalRoundsPlayed === this.status.mostPlayed) return 'mostPlayedPlayer';
+    return 'Player';
   }
 }

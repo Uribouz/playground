@@ -18,7 +18,10 @@
         </button>
       </div>
       <div class="playerBody">
-        <h2>{{ player.value.totalRoundsPlayed }}:</h2>
+        <h2 [ngClass]="getPlayerClass(player.value.totalRoundsPlayed)">
+          {{ player.value.totalRoundsPlayed }}
+        </h2>
+        <h2>:</h2>
         <button class="btn-small btn-add" (click)="addRoundsPlayed(player.key)">
           +
         </button>
