@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Player } from '../player/player';
-import { CommonModule } from '@angular/common';
+import { CommonModule, KeyValue } from '@angular/common';
 @Component({
   selector: 'app-player-list',
   standalone: true,
@@ -18,21 +18,31 @@ export class PlayerListComponent {
     localStorage.removeItem('player-list');
   }
   saveLocalStorage() {
-    console.log('save local storage');
+    // console.log(
+    //   'save local storage:' +
+    //     JSON.stringify(Array.from(this.playersMap.entries()))
+    // );
     localStorage.setItem(
       'player-list',
       JSON.stringify(Array.from(this.playersMap.entries()))
     );
   }
   loadLocalStorage() {
-    console.log('load local storage');
     let oldData = localStorage.getItem('player-list');
     if (!oldData) {
       return;
     }
     this.playersMap = new Map(JSON.parse(oldData));
+    // console.log(
+    //   'load local storage' + JSON.stringify(Array.from(this.playersMap))
+    // );
   }
-
+  originalOrder = (
+    a: KeyValue<string, Player>,
+    b: KeyValue<string, Player>
+  ): number => {
+    return 0;
+  };
   addPlayerList(newPlayers: string) {
     newPlayers.split(',').forEach((player) => {
       if (!this.playersMap.has(player)) {
