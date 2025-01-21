@@ -86,12 +86,20 @@ export class PlayerListComponent {
       return;
     }
     player.totalRoundsPlayed += value;
+    if (player.totalRoundsPlayed < 0) {
+      player.totalRoundsPlayed = 0;
+    }
     this.revalidateStatus();
     this.playersMap.set(playerName, player);
   }
+
   revalidateStatus() {
-    this.status.leastPlayed = 9999;
-    this.status.mostPlayed = 0;
+    if (this.playersMap.size <= 0) {
+      return;
+    }
+    console.log('this.playersMap.values().next().value: ' + this.playersMap.values().next().value)
+    this.status.leastPlayed = this.playersMap.values().next().value.totalRoundsPlayed;
+    this.status.mostPlayed = this.playersMap.values().next().value.totalRoundsPlayed;
     this.playersMap.forEach((value, player) => {
       if (this.status.leastPlayed > value.totalRoundsPlayed) {
         this.status.leastPlayed = value.totalRoundsPlayed;
