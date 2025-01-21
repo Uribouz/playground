@@ -23,6 +23,7 @@ export class PlayerListComponent {
 
   clearLocalStorage() {
     localStorage.removeItem('player-list');
+    localStorage.removeItem('players-status');
   }
   saveLocalStorage() {
     this.savePlayerLlist();
@@ -95,6 +96,12 @@ export class PlayerListComponent {
 
   revalidateStatus() {
     if (this.playersMap.size <= 0) {
+      this.status = {
+        leastPlayed: 0,
+        mostPlayed: 0,
+        leastPlayedPlayers: [],
+        mostPlayedPlayers: [],
+      };
       return;
     }
     console.log('this.playersMap.values().next().value: ' + this.playersMap.values().next().value)
