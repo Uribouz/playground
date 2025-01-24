@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Player } from '../player/player';
 import { CommonModule, KeyValue } from '@angular/common';
 import { max } from 'rxjs';
+import { Status } from '../status/status';
 @Component({
   selector: 'app-player-list',
   standalone: true,
@@ -10,17 +11,11 @@ import { max } from 'rxjs';
   styleUrl: './player-list.component.css',
 })
 export class PlayerListComponent {
-  status = {
-    leastPlayed: 0,
-    mostPlayed: 0,
-    leastPlayedPlayers: [],
-    mostPlayedPlayers: [],
-  };
+  status = new Status();
   playersMap = new Map();
   constructor() {
     this.loadLocalStorage();
   }
-
   clearLocalStorage() {
     localStorage.removeItem('player-list');
     localStorage.removeItem('players-status');
@@ -96,12 +91,7 @@ export class PlayerListComponent {
 
   revalidateStatus() {
     if (this.playersMap.size <= 0) {
-      this.status = {
-        leastPlayed: 0,
-        mostPlayed: 0,
-        leastPlayedPlayers: [],
-        mostPlayedPlayers: [],
-      };
+      this.status = new Status();
       return;
     }
     console.log('this.playersMap.values().next().value: ' + this.playersMap.values().next().value)
@@ -132,7 +122,7 @@ export class PlayerListComponent {
     this.updatePlayerRoundsPlayed(playerName, -1);
     this.saveLocalStorage();
   }
-  getPlayerClass(totalRoundsPlayed: number) {
+  getPlayerBodyClass(totalRoundsPlayed: number) {
     if (totalRoundsPlayed === this.status.leastPlayed)
       return 'leastPlayedPlayer';
     if (totalRoundsPlayed === this.status.mostPlayed) return 'mostPlayedPlayer';
