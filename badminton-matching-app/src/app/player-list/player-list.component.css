@@ -5,6 +5,14 @@
   /* background-color: #f6f0e4; */
   padding: 5px;
 }
+.btn {
+  height: 25px;
+  width: auto;
+}
+.btn-small {
+  height: 25px;
+  width: 25px;
+}
 
 .inputContainer {
   display: flex;
@@ -27,7 +35,15 @@
   padding: 5px;
 }
 .playerContainerHighlight {
-  background-color: yellow;
+  background-color:#A5E9E8;
+}
+.btn-delete {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  height: 10px;
+  width: 10px;
 }
 
 .playerHeader {
@@ -42,13 +58,8 @@
 .playerHeader h2 {
   text-wrap: wrap;
 }
-.btn-delete {
-  height: 25px;
-  width: 25px;
-  background-color: gray;
-}
 .playerBody {
-  font-size: x-large;
+  font-size: large;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -59,28 +70,24 @@
   padding-right: 5px;
 }
 
-.btn {
-  height: 25px;
-  width: auto;
-}
-.btn-small {
-  height: 25px;
-  width: 25px;
-}
 .btn-add {
-  background-color: limegreen;
+  /* background-color: limeg
+  reen; */
 }
 .btn-subtract {
-  background-color: red;
+  /* background-color: red; */
 }
-
 /* https://www.schemecolor.com/roaming-on-the-campus.php */
 .leastPlayedPlayer {
-  color: #d77b7b;
+  color: #C32B42;
 }
 .mostPlayedPlayer {
-  color: #372f7d;
+  color: #262E57;
 }
 .Player {
-  color: #59b1c2;
+  color:  #F7A007;
 }
+
+
+
+
