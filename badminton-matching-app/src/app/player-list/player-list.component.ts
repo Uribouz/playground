@@ -11,9 +11,12 @@ import { Status } from '../status/status';
   styleUrl: './player-list.component.css',
 })
 export class PlayerListComponent {
+  lastInteractPlayers: Map<String,String> = new Map<String,String>;
+  maximumInteractPlayers = 2;
   status = new Status();
   playersMap = new Map();
   constructor() {
+    // this.clearLocalStorage();
     this.loadLocalStorage();
   }
   clearLocalStorage() {
@@ -86,7 +89,11 @@ export class PlayerListComponent {
       player.totalRoundsPlayed = 0;
     }
     this.revalidateStatus();
+    player.isPreviouslyInteracted = true;
     this.playersMap.set(playerName, player);
+    this.checkLastInteractivePlayer(playerName);
+    console.log('player:');
+    console.log(player);
   }
 
   revalidateStatus() {
@@ -127,5 +134,35 @@ export class PlayerListComponent {
       return 'leastPlayedPlayer';
     if (totalRoundsPlayed === this.status.mostPlayed) return 'mostPlayedPlayer';
     return 'Player';
+  }
+  checkLastInteractivePlayer(playerName: string) {
+    console.log('status')
+    console.log(this.status)
+    this.lastInteractPlayers.set(playerName,playerName);
+    // this.setInteractivePlayer(playerName, true);
+    if (this.lastInteractPlayers.size <= this.maximumInteractPlayers) {
+      return;
+    }
+    const popPlayerName = this.lastInteractPlayers.keys().next().value
+    this.lastInteractPlayers.delete(popPlayerName)
+    this.setInteractivePlayer(popPlayerName, false);
+  }
+  setInteractivePlayer(playerName:string|undefined, status: boolean) {
+    if (!playerName) {
+      return;
+    }
+    let player = this.playersMap.get(playerName)
+    if (!player) {
+      return;
+    }
+    player.isPreviouslyInteracted = status;
+    this.playersMap.set(playerName, player);
+  }
+
+  getPlayerClass(player: Player) {
+    if (player.isPreviouslyInteracted) {
+      return 'playerContainer playerContainerHighlight'
+    }
+    return 'playerContainer';
   }
 }

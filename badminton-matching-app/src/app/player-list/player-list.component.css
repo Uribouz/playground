@@ -26,6 +26,10 @@
   border: solid black;
   padding: 5px;
 }
+.playerContainerHighlight {
+  background-color: yellow;
+}
+
 .playerHeader {
   display: flex;
   align-items: center;

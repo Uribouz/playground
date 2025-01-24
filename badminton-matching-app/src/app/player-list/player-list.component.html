@@ -11,29 +11,30 @@
 
   <div class="playerListContainer">
     <div
-      class="playerContainer"
       *ngFor="let player of playersMap | keyvalue : originalOrder"
     >
-      <div class="playerHeader">
-        <h2>{{ player.key }}</h2>
-        <button class="btn-small btn-delete" (click)="deletePlayer(player.key)">
-          X
-        </button>
-      </div>
-      <div class="playerBody">
-        <h2 [ngClass]="getPlayerClass(player.value.totalRoundsPlayed)">
-          {{ player.value.totalRoundsPlayed }}
-        </h2>
-        <h2>:</h2>
-        <button class="btn-small btn-add" (click)="addRoundsPlayed(player.key)">
-          +
-        </button>
-        <button
-          class="btn-small btn-subtract"
-          (click)="subtractRoundsPlayed(player.key)"
-        >
-          -
-        </button>
+      <div [ngClass]="getPlayerClass(player.value)">
+        <div class="playerHeader">
+          <h2>{{ player.key }}</h2>
+          <button class="btn-small btn-delete" (click)="deletePlayer(player.key)">
+            X
+          </button>
+        </div>
+        <div class="playerBody">
+          <h2 [ngClass]="getPlayerBodyClass(player.value.totalRoundsPlayed)">
+            {{ player.value.totalRoundsPlayed }}
+          </h2>
+          <h2>:</h2>
+          <button class="btn-small btn-add" (click)="addRoundsPlayed(player.key)">
+            +
+          </button>
+          <button
+            class="btn-small btn-subtract"
+            (click)="subtractRoundsPlayed(player.key)"
+          >
+            -
+          </button>
+        </div>
       </div>
       <!-- <h3>Total Rounds Wons: {{ player.value.totalRoundsWon }}</h3> -->
     </div>
