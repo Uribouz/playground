@@ -4,9 +4,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Objective
 
-### 1. Can add players
 
+## Done:
+### 1. Can add players
 ### 2. Can See list of players
+
+## Bug:
+ ยังมี bug lastInteractive player อยู่ ถ้าเพิ่ม/ลดคน
+
+
+## Backlog:
 
 ### 3. Can create a randomly match with another 3 player, 1 on the same team, 2 on the opposite team
 
