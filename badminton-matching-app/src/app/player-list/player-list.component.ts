@@ -12,7 +12,8 @@ import { Status } from '../status/status';
 })
 export class PlayerListComponent {
   lastInteractPlayers: Map<String,String> = new Map<String,String>;
-  maximumInteractPlayers = 2;
+  playersPerCourt = 4;
+  maximumInteractPlayers = this.playersPerCourt*2;
   status = new Status();
   playersMap = new Map();
   constructor() {
@@ -36,6 +37,12 @@ export class PlayerListComponent {
       JSON.stringify(Array.from(this.playersMap.entries()))
     );
   }
+  revalidateMaximumInteractPlayers() {
+    return;
+    //No need to run for now
+    this.maximumInteractPlayers = Math.floor(this.playersMap.size / 2);
+    console.log("this.maximumInteractPlayers: ", this.maximumInteractPlayers)
+  }
   loadLocalStorage() {
     this.loadPlayerList();
     this.loadPlayerStatus();
@@ -46,6 +53,9 @@ export class PlayerListComponent {
       return;
     }
     this.playersMap = new Map(JSON.parse(playerList));
+    //Temp fixed: Clear save data on load from cached.
+    this.playersMap.forEach((value,key,playerMap) => value.isPreviouslyInteracted = false);
+    this.revalidateMaximumInteractPlayers();
   }
   loadPlayerStatus() {
     let status = localStorage.getItem('players-status');
@@ -70,12 +80,14 @@ export class PlayerListComponent {
       }
     });
     this.saveLocalStorage();
+    this.revalidateMaximumInteractPlayers();
   }
   deletePlayer(playerName: string) {
     console.log('deletePlayer: ' + playerName);
     this.playersMap.delete(playerName);
     this.revalidateStatus();
     this.saveLocalStorage();
+    this.revalidateMaximumInteractPlayers();
   }
 
   updatePlayerRoundsPlayed(playerName: string, value: number) {
@@ -136,8 +148,8 @@ export class PlayerListComponent {
     return 'Player';
   }
   checkLastInteractivePlayer(playerName: string) {
-    console.log('status')
-    console.log(this.status)
+    console.log('this.lastInteractPlayers.size: ',this.lastInteractPlayers.size);
+    console.log('this.maximumInteractPlayers: ',this.maximumInteractPlayers)
     this.lastInteractPlayers.set(playerName,playerName);
     // this.setInteractivePlayer(playerName, true);
     if (this.lastInteractPlayers.size <= this.maximumInteractPlayers) {
