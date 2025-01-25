@@ -18,6 +18,8 @@
   height: 17.5%;
   width: 17.5%;
   padding: 0 0;
+  border: none;
+  background: none;
 }
 
 .inputContainer {
@@ -59,7 +61,6 @@
   position: absolute;
   right: 0;
   top: 0;
-  align-self: flex-start;
   margin: 2px;
   border: none;
   background: none;
