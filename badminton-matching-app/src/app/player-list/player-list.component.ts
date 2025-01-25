@@ -87,6 +87,7 @@ export class PlayerListComponent {
     this.playersMap.delete(playerName);
     this.revalidateStatus();
     this.saveLocalStorage();
+    this.lastInteractPlayers.delete(playerName)
     this.revalidateMaximumInteractPlayers();
   }
 
